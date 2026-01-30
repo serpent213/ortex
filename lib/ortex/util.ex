@@ -42,12 +42,7 @@ defmodule Ortex.Util do
         :ok
 
       onnx_runtime_paths == [] ->
-        IO.warn("""
-        Unable to locate libonnxruntime binaries.
-        Searched: #{Enum.join(search_patterns, ", ")}
-        Destination: #{destination_dir}
-        Set ORT_LIB_LOCATION or run mix compile to build the NIF.
-        """)
+        :ok
 
       true ->
         Enum.each(onnx_runtime_paths, fn path ->
@@ -118,7 +113,8 @@ defmodule Ortex.Util do
   end
 
   defp suppress_copy_warning?() do
-    truthy_env?("ORTEX_SKIP_COMPILE")
+    truthy_env?("ORTEX_SKIP_COMPILE") or truthy_env?("ORTEX_SKIP_DOWNLOAD") or
+      truthy_env?("ORT_PREFER_DYNAMIC_LINK")
   end
 
   defp truthy_env?(name) do
