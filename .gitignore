@@ -1,5 +1,7 @@
 # The directory Mix will write compiled artifacts to.
 /_build/
+/priv/native/
+/models/resnet50.onnx
 
 # If you run "mix test --cover", coverage assets end up here.
 /cover/
@@ -24,3 +26,14 @@ ortex-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Devenv
+.devenv*
+devenv.local.nix
+devenv.local.yaml
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
